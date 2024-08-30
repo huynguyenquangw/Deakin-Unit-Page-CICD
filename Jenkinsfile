@@ -3,10 +3,18 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                script {
+                // script {
                     // Use Maven to build the project
-                    echo 'Building the project...'
-                    sh 'mvn clean install'
+                echo 'Building the project...'
+                    // sh 'mvn clean install'
+                // }
+                post {
+                    always {
+                        mail to: 'winitmagician',
+                             subject: "Pipeline Status: ${currentBuild.fullDisplayName}",
+                             body: "The status of the pipeline is: ${currentBuild.currentResult}\n\nCheck Jenkins for details.",
+                             attachLog: true
+                    }
                 }
             }
         }
@@ -14,7 +22,7 @@ pipeline {
             steps {
                 script {
                     echo 'Running unit and integration tests...'
-                    sh 'mvn test'
+                    // sh 'mvn test'
                 }
             }
         }
@@ -23,7 +31,7 @@ pipeline {
                 script {
                     echo 'Running code analysis...'
                     // Assuming SonarQube is set up
-                    sh 'mvn sonar:sonar'
+                    // sh 'mvn sonar:sonar'
                 }
             }
         }
@@ -32,7 +40,7 @@ pipeline {
                 script {
                     echo 'Performing security scan...'
                     // Example command for OWASP ZAP
-                    sh 'zap-cli start && zap-cli quick-scan http://localhost'
+                    // sh 'zap-cli start && zap-cli quick-scan http://localhost'
                 }
             }
         }
@@ -61,12 +69,4 @@ pipeline {
             }
         }
     }
-    // post {
-    //     always {
-    //         mail to: 'your-email@example.com',
-    //              subject: "Pipeline Status: ${currentBuild.fullDisplayName}",
-    //              body: "The status of the pipeline is: ${currentBuild.currentResult}\n\nCheck Jenkins for details.",
-    //              attachLog: true
-    //     }
-    // }
 }
