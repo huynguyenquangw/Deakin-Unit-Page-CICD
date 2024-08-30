@@ -10,7 +10,7 @@ pipeline {
                 // }
                 post {
                     always {
-                        mail to: 'winitmagician',
+                        mail to: 'winitmagician@gmail.com',
                              subject: "Pipeline Status: ${currentBuild.fullDisplayName}",
                              body: "The status of the pipeline is: ${currentBuild.currentResult}\n\nCheck Jenkins for details.",
                              attachLog: true
