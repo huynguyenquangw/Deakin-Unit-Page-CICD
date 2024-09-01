@@ -7,15 +7,15 @@ pipeline {
                     // Use Maven to build the project
                 echo 'Building the project...'
                     // sh 'mvn clean install'
-                // }
-                // post {
-                //     always {
-                //         mail to: 'winitmagician@gmail.com',
-                //              subject: "Pipeline Status: ${currentBuild.fullDisplayName}",
-                //              body: "The status of the pipeline is: ${currentBuild.currentResult}\n\nCheck Jenkins for details.",
-                //              attachLog: true
-                //     }
-                // }
+                }
+                post {
+                    always {
+                        mail to: 'winitmagician@gmail.com',
+                             subject: "Pipeline Status: ${currentBuild.fullDisplayName}",
+                             body: "The status of the pipeline is: ${currentBuild.currentResult}\n\nCheck Jenkins for details.",
+                             attachLog: true
+                    }
+                }
             }
         }
         stage('Unit and Integration Tests') {
