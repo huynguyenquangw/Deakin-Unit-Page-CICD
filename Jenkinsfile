@@ -1,71 +1,50 @@
 pipeline {
     agent any
+
+    environment {
+        DIRECTORY_PATH = './'
+        TESTING_ENVIRONMENT = 'Staging'
+        PRODUCTION_ENVIRONMENT = 'JAKE'
+    }
+
     stages {
         stage('Build') {
             steps {
-                // script {
-                    // Use Maven to build the project
+                echo "Fetching the source code from the directory path: ${env.DIRECTORY_PATH}..."
+                sleep 1
+                echo "Compiling the code and generating necessary artifacts..."
+                sleep 2
                 echo 'Building the project...'
-                    // sh 'mvn clean install'
-                }
-                // post {
-                //     always {
-                //         mail to: 'winitmagician@gmail.com',
-                //              subject: "Pipeline Status: ${currentBuild.fullDisplayName}",
-                //              body: "The status of the pipeline is: ${currentBuild.currentResult}\n\nCheck Jenkins for details.",
-                //              attachLog: true
-                //     }
-                // }
             }
         }
         stage('Unit and Integration Tests') {
             steps {
-                script {
-                    echo 'Running unit and integration tests...'
-                    // sh 'mvn test'
-                }
+                echo 'Running unit and integration tests...'
             }
         }
         stage('Code Analysis') {
             steps {
-                script {
-                    echo 'Running code analysis...'
-                    // Assuming SonarQube is set up
-                    // sh 'mvn sonar:sonar'
-                }
+                echo 'Running code analysis...'
             }
         }
         stage('Security Scan') {
             steps {
-                script {
-                    echo 'Performing security scan...'
-                    // Example command for OWASP ZAP
-                    // sh 'zap-cli start && zap-cli quick-scan http://localhost'
-                }
+                echo 'Performing security scan...'
             }
         }
         stage('Deploy to Staging') {
             steps {
-                script {
-                    echo 'Deploying to staging...'
-                    // Commands to deploy to staging
-                }
+                echo 'Deploying to staging...'
             }
         }
         stage('Integration Tests on Staging') {
             steps {
-                script {
-                    echo 'Running integration tests on staging...'
-                    // Integration testing commands
-                }
+                echo 'Running integration tests on staging...'
             }
         }
         stage('Deploy to Production') {
             steps {
-                script {
-                    echo 'Deploying to production...'
-                    // Commands to deploy to production
-                }
+                echo 'Deploying to production...'
             }
         }
     }
