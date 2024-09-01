@@ -25,25 +25,17 @@ pipeline {
                 }
             }
             post {
-                success {
-                    script {
-                        emailext(
-                            to: "s224147312@deakin.edu.au",
-                            subject: "Unit and Integration Tests Succeeded: ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
-                            body: "The Unit and Integration Tests stage of ${env.JOB_NAME} build ${env.BUILD_NUMBER} completed successfully.",
-                            attachLog: true
-                        )
-                    }
+                success{
+                    mail to: "s224147312@deakin.edu.au",
+                         subject: "Unit and Integration Tests Succeeded: ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
+                         body: "The Unit and Integration Tests stage of ${env.JOB_NAME} build ${env.BUILD_NUMBER} completed successfully.",
+                         attachLog: true
                 }
-                failure {
-                    script {
-                        emailext(
-                            to: "s224147312@deakin.edu.au",
-                            subject: "Unit and Integration Tests Failed: ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
-                            body: "The Unit and Integration Tests stage of ${env.JOB_NAME} build ${env.BUILD_NUMBER} failed. Please check the attached logs.",
-                            attachLog: true
-                        )
-                    }
+                failure{
+                    mail to: "s224147312@deakin.edu.au",
+                         subject: "Unit and Integration Tests Failed: ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
+                         body: "The Unit and Integration Tests stage of ${env.JOB_NAME} build ${env.BUILD_NUMBER} failed. Please check the attached logs.",
+                         attachLog: true
                 }
             }
         }
@@ -65,25 +57,17 @@ pipeline {
                 }
             }
             post {
-                success {
-                    script {
-                        emailext(
-                            to: "s224147312@deakin.edu.au",
-                            subject: "Security Scan Succeeded: ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
-                            body: "The Security Scan stage of ${env.JOB_NAME} build ${env.BUILD_NUMBER} completed successfully.",
-                            attachLog: true
-                        )
-                    }
+                success{
+                    mail to: "s224147312@deakin.edu.au",
+                         subject: "Security Scan Succeeded: ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
+                         body: "The Security Scan stage of ${env.JOB_NAME} build ${env.BUILD_NUMBER} completed successfully.",
+                         attachLog: true
                 }
-                failure {
-                    script {
-                        emailext(
-                            to: "s224147312@deakin.edu.au",
-                            subject: "Security Scan Failed: ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
-                            body: "The Security Scan stage of ${env.JOB_NAME} build ${env.BUILD_NUMBER} failed. Please check the attached logs.",
-                            attachLog: true
-                        )
-                    }
+                failure{
+                    mail to: "s224147312@deakin.edu.au",
+                         subject: "Security Scan Failed: ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
+                         body: "The Security Scan stage of ${env.JOB_NAME} build ${env.BUILD_NUMBER} failed. Please check the attached logs.",
+                         attachLog: true
                 }
             }
         }
