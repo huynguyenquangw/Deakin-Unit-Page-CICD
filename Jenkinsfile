@@ -17,7 +17,7 @@ pipeline {
                 echo 'Building the project...'
             }
             post{
-                always {
+                success{
                     mail to: 's224147312@deakin.edu.au'
                     subject: '[SIT753] Deakin Unit Page CIDI - Build'
                     body: 'Build was successful'
